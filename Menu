@@ -1,0 +1,40 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Test
+{
+    public class Menu : Score
+    {
+        public void Game_Menu()
+        {
+            Console.Clear();
+            int mode;
+            string input;
+            Console.WriteLine("Choose GameMode \n1.You vs. Ai\n2.You vs Your Friend\n3.Exit.");
+            input = Console.ReadLine();
+            int.TryParse(input, out mode);
+
+            switch (mode)
+            {
+                case 1:
+                    Score_1();
+                    Game_Menu();
+                    break;
+                case 2:
+                    Score_2();
+                    Game_Menu();
+                    break;
+                case 3:
+                    Environment.Exit(0);
+                    break;
+                default:
+                    Console.Clear();
+                    Game_Menu();
+                    break;
+            }
+        }
+    }
+}
