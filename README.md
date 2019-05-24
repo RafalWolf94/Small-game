@@ -10,6 +10,8 @@ namespace GRa
 {
     class Program
     {
+
+
         public enum Choices
         {
             Rock = 0,
@@ -65,17 +67,16 @@ namespace GRa
                 UserChoice_2();
                 Console.Clear();
             }
-                switch (input)
-                {
-                    case "R": Choice = Choices.Rock; break;
-                    case "P": Choice = Choices.Paper; break;
-                    default:
-                    case "S": Choice = Choices.Scissors; break;
-                }
-                       
-                Console.WriteLine(Enum.GetName(typeof(Choices), Choice));
+            switch (input)
+            {
+                case "R": Choice = Choices.Rock; break;
+                case "P": Choice = Choices.Paper; break;
+                default:
+                case "S": Choice = Choices.Scissors; break;
+            }
 
-                return Choice;
+            Console.WriteLine(Enum.GetName(typeof(Choices), Choice));
+            return Choice;
         }
 
         static Choices AiChoice()
@@ -89,30 +90,54 @@ namespace GRa
 
         static void Score_1()
         {
-            Choices user = UserChoice_1();
-            CoundDown();
-            Choices ai = AiChoice();
-            switch (results[(int)user, (int)ai])
+            int p1 = 0;
+            int p2 = 0;
+            string Winner;
+            do
             {
-                case 1: Console.WriteLine("WIN"); break;
-                case 0: Console.WriteLine("DRAW"); break;
-                case -1: Console.WriteLine("LOSE"); break;
-            }
+                Console.Clear();
+                Choices user = UserChoice_1();
+                CoundDown();
+                Choices ai = AiChoice();
+                switch (results[(int)user, (int)ai])
+                {
+                    case 1: p1++; Console.WriteLine("WIN"); break;
+                    case 0: Console.WriteLine("DRAW"); break;
+                    case -1: p2++; Console.WriteLine("LOSE"); break;
+                }
+                Console.ReadKey();
+            } while (!(p1 == 3 || p2 == 3));
+
+            if (p1 > p2) { Winner = "Player 1"; }
+            else { Winner = "Player 2"; }
+
+            Console.WriteLine("Score:\nPlayer1: {0}\nPlayer2: {1} \nCongratulations {2}!", p1, p2, Winner);
             Console.ReadKey();
             Console.Clear();
         }
         static void Score_2()
         {
-            Choices user = UserChoice_1();
-            Console.Clear();
-            Choices user2 = UserChoice_2();
-
-            switch (results[(int)user, (int)user2])
+            int p1 = 0;
+            int p2 = 0;
+            string Winner;
+            do
             {
-                case 1: Console.WriteLine("WIN"); break;
-                case 0: Console.WriteLine("DRAW"); break;
-                case -1: Console.WriteLine("LOSE"); break;
-            }
+                Choices user = UserChoice_1();
+                Console.Clear();
+                Choices user2 = UserChoice_2();
+
+                switch (results[(int)user, (int)user2])
+                {
+                    case 1: Console.WriteLine("WIN"); break;
+                    case 0: Console.WriteLine("DRAW"); break;
+                    case -1: Console.WriteLine("LOSE"); break;
+                }
+            } while (!(p1 == 3 || p2 == 3));
+
+            if (p1 > p2) { Winner = "Player 1"; }
+            else { Winner = "Player 2"; }
+
+            Console.WriteLine("Score:\nPlayer1: {0}\nPlayer2: {1} \nCongratulations {2}!", p1, p2, Winner);
             Console.ReadKey();
             Console.Clear();
 
