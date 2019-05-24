@@ -1,0 +1,103 @@
+# Small-game
+Small Game - Paper/Scissors/Rock
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Test
+{
+    public class Score : User
+    {
+        static int[,] results = new int[3, 3]{
+            {0, -1, 1},
+            {1, 0, -1},
+            {-1, 1, 0},
+        };
+        static Choices AiChoice()
+        {
+            Choices AiChoice;
+            Random rnd = new Random();
+            AiChoice = (Choices)(rnd.Next(0, 2));
+            Console.WriteLine(Enum.GetName(typeof(Choices), AiChoice));
+            return AiChoice;
+        }
+        public static void Score_1()
+        {
+            int games;
+            Console.WriteLine("Your Nickname? Player1: ");
+            string player1 = Console.ReadLine();
+
+            Console.WriteLine("How many wins?");
+            string quantity = Console.ReadLine();
+            int.TryParse(quantity, out games);
+            int p1 = 0;
+            int p2 = 0;
+            string Winner;            
+
+            do
+            {
+                Console.Clear();
+                Choices user = UserChoice_1();
+                Choices ai = AiChoice();
+                switch (results[(int)user, (int)ai])
+                {
+                    case 1: p1++; Console.WriteLine("WIN {0}:{1}\nLOSE Ai:{2}", player1, user, ai); break;
+                    case 0: Console.WriteLine("DRAW"); break;
+                    case -1: p2++; Console.WriteLine("LOSE {0}:{1}\nWIN Ai:{2}", player1, user, ai); break;
+                }
+                Console.ReadKey();
+            } while (!(p1 == games || p2 == games));
+
+            if (p1 > p2) { Winner = player1; }
+            else { Winner = "AI"; }
+            Console.Clear();
+            Console.WriteLine("Score:\n{0}: {1}\nAI: {2} \nCongratulations {3}!", player1, p1, p2, Winner);
+            Console.ReadKey();
+            Console.Clear();
+
+        }
+        public void Score_2()
+        {
+
+
+            Console.WriteLine("Your Nickname? Player1: ");
+            string player1 = Console.ReadLine();
+            Console.WriteLine("Your Nickname? Player2: ");
+            string player2 = Console.ReadLine();
+
+            int games;
+
+            Console.WriteLine("How many wins?");
+            string quantity = Console.ReadLine();
+            int.TryParse(quantity, out games);
+
+            int p1 = 0;
+            int p2 = 0;
+            string Winner;
+            Console.Clear();
+            do
+            {
+                Choices user = UserChoice_1();
+                Console.Clear();
+                Choices user2 = UserChoice_2();
+                switch (results[(int)user, (int)user2])
+                {
+                    case 1: p1++; Console.WriteLine("WIN {0}:{1}\nLOSE {2}:{3}", player1, user, player2, user2); break;
+                    case 0: Console.WriteLine("DRAW"); break;
+                    case -1: p2++; Console.WriteLine("LOSE {0}:{1}\nWIN {2}:{3}", player1, user, player2, user2); break;
+                }
+                Console.ReadKey();
+            } while (!(p1 == games || p2 == games));
+
+            if (p1 > p2) { Winner = player1; }
+            else { Winner = player2; }
+            Console.Clear();
+            Console.WriteLine("Score:\n{0}: {1}\n{2}: {3} \nCongratulations {4}!", player1, p1, player2, p2, Winner);
+            Console.ReadKey();
+            Console.Clear();
+        }
+    }
+}
