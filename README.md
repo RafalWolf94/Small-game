@@ -32,7 +32,7 @@ namespace GRa
             input = Console.ReadLine().ToUpper();
             if (!(input == "R" || input == "P" || input == "S"))
             {
-                Console.WriteLine("Podaj poprawna litere");
+                Console.WriteLine("Wrong sign");
                 Console.ReadKey();
                 Console.Clear();
                 UserChoice_1();
@@ -59,7 +59,7 @@ namespace GRa
             input = Console.ReadLine().ToUpper();
             if (!(input == "R" || input == "P" || input == "S"))
             {
-                Console.WriteLine("Podaj poprawna litere");
+                Console.WriteLine("Wrong sign");
                 Console.ReadKey();
                 Console.Clear();
                 UserChoice_2();
