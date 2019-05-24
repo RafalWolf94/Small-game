@@ -1,0 +1,40 @@
+# Small-game
+Small Game - Paper/Scissors/Rock
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Threading;
+using System.Media;
+
+namespace Test
+{
+    class Program
+    {
+
+        static void CoundDown()
+        {
+            for (int i = 0; i < 3; i++)
+            {
+                Console.WriteLine(i + 1);
+                Thread.Sleep(100);
+            }
+        }
+        static void Main(string[] args)
+        {
+            
+
+            SoundPlayer player = new SoundPlayer();          
+            player.SoundLocation = AppDomain.CurrentDomain.BaseDirectory + "Music2(2).wav";
+            player.Play();
+
+            Console.WriteLine("Hi!\nLet's play a game!\n(press enter)");
+            Console.ReadKey();
+
+            Menu m = new Menu();
+            m.Game_Menu();
+        }
+    }
+}
