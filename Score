@@ -40,7 +40,7 @@ namespace Test
             do
             {
                 Console.Clear();
-                Choices user = UserChoice_1();
+                Choices user = UserChoice();
                 Choices ai = AiChoice();
                 switch (results[(int)user, (int)ai])
                 {
@@ -80,9 +80,9 @@ namespace Test
             Console.Clear();
             do
             {
-                Choices user = UserChoice_1();
+                Choices user = UserChoice();
                 Console.Clear();
-                Choices user2 = UserChoice_2();
+                Choices user2 = UserChoice();
                 switch (results[(int)user, (int)user2])
                 {
                     case 1: p1++; Console.WriteLine("WIN {0}:{1}\nLOSE {2}:{3}", player1, user, player2, user2); break;
