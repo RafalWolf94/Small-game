@@ -17,12 +17,13 @@ namespace Test
             Paper = 1,
             Scissors = 2,
         }
-        static int[,] results = new int[3, 3]{
+        static int[,] results = new int[3, 3]
+        {
             {0, -1, 1},
             {1, 0, -1},
             {-1, 1, 0},
         };
-        public static Choices UserChoice_1()
+        public static Choices UserChoice()
         {
             string input;
             Choices Choice;
@@ -46,32 +47,6 @@ namespace Test
             }
             Console.WriteLine(Enum.GetName(typeof(Choices), Choice));
             return Choice;
-        }
-        public static Choices UserChoice_2()
-        {
-            string input;
-            Choices Choice;
-            Console.WriteLine("Wybierz:\n(R)ock\n(P)paper\n(S)cissors");
-
-            input = Console.ReadLine().ToUpper();
-            if (!(input == "R" || input == "P" || input == "S"))
-            {
-                Console.WriteLine("Wrong sign");
-                Console.ReadKey();
-                Console.Clear();
-                UserChoice_2();
-                Console.Clear();
-            }
-            switch (input)
-            {
-                case "R": Choice = Choices.Rock; break;
-                case "P": Choice = Choices.Paper; break;
-                default:
-                case "S": Choice = Choices.Scissors; break;
-            }
-
-            Console.WriteLine(Enum.GetName(typeof(Choices), Choice));
-            return Choice;
-        }
+        }        
     }
 }
